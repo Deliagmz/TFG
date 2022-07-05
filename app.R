@@ -1,3 +1,4 @@
+
 library (shiny)
 library(shinythemes)
 library(ggplot2)
@@ -333,10 +334,9 @@ ui <- fluidPage(
               ),
               fluidRow(
                 splitLayout(
-                  cellArgs = list(style = "border: 1px solid #f2540c;padding:0.5em;"),
-                  cellWidths = 400,
+                  cellWidths = 500,
                   tableOutput("exp"),
-                  plotOutput("graficaExp")
+                  plotOutput("graficaExp",height = 600,width = 500)
                 ),
                 br(),
                 column(
@@ -360,10 +360,9 @@ ui <- fluidPage(
               ),
               fluidRow(
                 splitLayout(
-                  cellArgs = list(style = "border: 1px solid #f2540c;padding:0.5em;"),
-                  cellWidths = 400,
+                  cellWidths = 500,
                   tableOutput("trig"),
-                  plotOutput("graficaTrig")
+                  plotOutput("graficaTrig",height = 600,width = 500)
                 ),
                 br(),
                 column(
@@ -389,10 +388,9 @@ ui <- fluidPage(
               ),
               fluidRow(
                 splitLayout(
-                  cellArgs = list(style = "border: 1px solid #f2540c;padding:0.5em;"),
-                  cellWidths = 400,
+                  cellWidths = 500,
                   tableOutput("opt"),
-                  plotOutput("graficaOpt")
+                  plotOutput("graficaOpt",height = 600,width = 500)
                 ),
                 br(),
                 column(
@@ -420,10 +418,9 @@ ui <- fluidPage(
               ),
               fluidRow(
                 splitLayout(
-                  cellArgs = list(style = "border: 1px solid #f2540c;padding:0.5em;"),
-                  cellWidths = 400,
+                 cellWidths = 500,
                   tableOutput("expN"),
-                  plotOutput("graficaExpN")
+                  plotOutput("graficaExpN",height = 600,width = 500)
                 ),
                 br(),
                 column(
@@ -557,15 +554,10 @@ ui <- fluidPage(
                           i & x_i & f(x_i) & f[x_i] & f[x_i-1,x_i] & f[x_i-2,x_i-1,x_i] &f[x_i-3,x_i-2,x_i-1,x_i] \\\\
                           \\hline
                           0 & x_0  & f(x_0)  & f[x_0] \\\\
-
                                                          &&&& f[x_0,x_1]\\\\
-
                           1 & x_1 & f(x_1)  & f[x_1]&& f[x_0,x_1,x_2]\\\\
-
                                                          &&&& f[x_1,x_2]&& f[x_0,x_1,x_2,x_3]\\\\
-
                           2 & x_2& f(x_2)  & f[x_2]&& f[x_1,x_2,x_3]\\\\
-
                                                          &&&& f[x_2,x_3]\\\\
                           3 & x_3& f(x_3)  & f[x_3]
                           \\end{array}$$"
@@ -580,15 +572,10 @@ ui <- fluidPage(
                           i & x_i & f(x_i) & f[x_i] & f[x_i-1,x_i] & f[x_i-2,x_i-1,x_i] &f[x_i-3,x_i-2,x_i-1,x_i] \\\\
                           \\hline
                           0 & x_0  & f(x_0)  & f[x_0] & f[x_0,x_1]& f[x_0,x_1,x_2]& f[x_0,x_1,x_2,x_3]\\\\
-
                                                          &&&\\\\
-
                           1 & x_1 & f(x_1)  & f[x_1]& f[x_1,x_2]& f[x_1,x_2,x_3]\\\\
-
                                                          &&&\\\\
-
                           2 & x_2& f(x_2)  & f[x_2]&f[x_2,x_3]\\\\
-
                                                          &&&& \\\\
                           3 & x_3& f(x_3)  & f[x_3]
                           \\end{array}$$"
@@ -828,7 +815,7 @@ ui <- fluidPage(
         "Fórmula cerrada de Newton-Côtes",
         uiOutput("ICerradaNewton"),
         tabsetPanel(
-          tabPanel("Teoría", uiOutput("teoría"),
+          tabPanel("Teoría", uiOutput("teoríaICN"),
                    mainPanel(fluidRow(
                      column(
                        12,
@@ -880,10 +867,10 @@ ui <- fluidPage(
                        ),
                        
                        br(),
-                      
+                       
                        strong(" Regla de Simpson tres octavos (n=3)", style =
                                 "color: #f2540c"),
-                     
+                       
                        br(),br(),
                        p(
                          "Teniendo en cuenta que  \\((\\frac{3h^5}{80}f^{iv}(\\xi)) \\) representa el error y que (\\( x_0<\\xi< x_3\\)):"
@@ -913,14 +900,14 @@ ui <- fluidPage(
               tabPanel("Regla de Simpson tres octavos", "drch"),
             ))
           )
-        
-      )),
+          
+        )),
       
       
       tabPanel(
         "Fórmula abierta de Newton-Côtes",
         uiOutput("IAbiertaNewton"), tabsetPanel(
-          tabPanel("Teoría", uiOutput("teoría"),
+          tabPanel("Teoría", uiOutput("teoríaIAN"),
                    mainPanel(fluidRow(
                      column(
                        12,
@@ -932,8 +919,8 @@ ui <- fluidPage(
                        p(
                          "\\(x_i=x_0+ih\\) , \\( i = 0,...,n \\) con \\(x_0=a+h\\) , \\( x_n =b-h(x_{-1}=a,x_{n+1}=b)\\) , y \\(h = \\frac{b-a}{n+2} \\)"),
                        p("Su grado de exactitud es n+1 si n par, y n si n impar."),
-                      
-                        strong(" Regla del punto medio (n=0)", style =
+                       
+                       strong(" Regla del punto medio (n=0)", style =
                                 "color: #f2540c"),
                        br(),br(),
                        p(
@@ -1012,7 +999,7 @@ ui <- fluidPage(
       tabPanel(
         "Fórmulas de integración compuestas",
         uiOutput("ICompuesta"),tabsetPanel(
-          tabPanel("Teoría", uiOutput("teoría"),
+          tabPanel("Teoría", uiOutput("teoríaIC"),
                    mainPanel(fluidRow(
                      column(
                        12,
@@ -1021,11 +1008,11 @@ ui <- fluidPage(
                        h4("Fórmulas de integración compuestas "),
                        br(),
                        p("Estas fórmulas resultan de dividir el intervalo de integración en subintervalos para aplicar una fórmula simple en cada uno de ellos, y así simplificar los cáculos. "),
-                      
+                       
                        strong(" Regla del trapecio compuesta", style =
                                 "color: #f2540c"),
                        br(),br(),
-                     
+                       
                        p(
                          " Siendo \\(h=\\frac{b-a}{N}\\), teniendo en cuenta que  \\((\\frac{h^2(b-a)}{12}f''(\\xi)) \\) representa el error y que (\\( a<\\xi< b\\)):"
                        ),
@@ -1089,7 +1076,7 @@ ui <- fluidPage(
                    ))),
           tabPanel(
             "Ejemplos",
-            uiOutput("EDerivacion"),
+            uiOutput("EICompuestas"),
             mainPanel(navlistPanel(
               tabPanel("Regla del trapecio compuesta", "cetrada"),
               tabPanel("Regla de Simpson compuesta", "izq"),
@@ -1098,7 +1085,7 @@ ui <- fluidPage(
           )
           
         )
-       
+        
       ),
       
     )
@@ -1113,108 +1100,199 @@ server <- function(input, output) {
   
   ##BIPARTICION
   #EXPONENCIAL
-  bipartExp <- function(i, n, ab) {
+ 
+  bipartExp <- function(i, n,ab) {
     if (i <= n) {
       output$exp <- renderTable(df[1:i, ])
       output$graficaExp <-
-        renderPlot(plot(
-          x,
-          exp(3 * x) - 4,
-          ylim = c(-5, 10),
-          xlim = c(ab[i, 1], ab[i, 2]),
-          type = "l",
-          col = "#f2540c",
-          lwd = 3
-        ))
+        renderPlot(
+          gBipartEXP +  
+            geom_line(aes(x = ab[i, 1],colour = "a"),color="#f2540c", size = 1) +
+            geom_line(aes(x = ab[i, 2],colour = "b"),color="#f2540c", size = 1)
+          
+          +annotate(
+              "text",
+              x = ab[i, 1],
+              y = -3,
+              label = "a",
+              colour = "black",
+              vjust = 1.5
+            )
+          + annotate(
+              "text",
+              x =ab[i, 2],
+              y =  -3,
+              label = "b",
+              colour = "black",
+              vjust = 1.5
+            )
+        )
     }
-    
   }
   x<-seq(0,1,0.05)
   df <- bipart_table(function(x)
     (exp(3 * x) - 4), 0, 1, 5, 1)
   ab <- bipart(function(x)
     (exp(3 * x) - 4), 0, 1, 5)
+
+ xDT <- as.data.frame(x)
+  gBipartEXP <- ggplot(xDT, aes(x = x, y =  exp(3 * x) - 4)) +
+    labs(x = "X", y = "F(X)") +
+    theme(axis.title.x = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    theme(axis.title.y = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    geom_line(data = xDT) +
+    geom_line(color = "blue", size = 1)
   
-  output$graficaExp <-
-    renderPlot(plot(
-      x,
-      exp(3 * x) - 4,
-      ylim = c(-5, 10),
-      xlim = c(0, 1),
-      type = "l",
-      col = "#f2540c",
-      lwd = 3
-    ))
+ 
+  output$graficaExp <- renderPlot(gBipartEXP)
+  
   
   observeEvent(input$botonexp, bipartExp(input$botonexp, 5, ab))
   
   #TRIGONOMETRICA
-  bipartTrig <- function(i, n, abT) {
+  
+  bipartTrig <- function(i, n,abT) {
     if (i <= n) {
       output$trig <- renderTable(dfT[1:i, ])
       output$graficaTrig <-
-        renderPlot(plot(
-          xT,
-          sin(xT) + cos(xT ^ 2),
-          ylim = c(-5, 10),
-          xlim = c(abT[i, 1], abT[i, 2]),
-          type = "l",
-          col = "#f2540c",
-          lwd = 3
-        ))
+        renderPlot(
+          gBipartTRIG +  
+            geom_line(aes(x = abT[i, 1],colour = "a"),color="#f2540c", size = 1) +
+            geom_line(aes(x = abT[i, 2],colour = "b"),color="#f2540c", size = 1)
+          
+          +annotate(
+            "text",
+            x = abT[i, 1],
+            y = -0.35,
+            label = "a",
+            colour = "black",
+            vjust = 1.5
+          )
+          + annotate(
+            "text",
+            x =abT[i, 2],
+            y =  -0.35,
+            label = "b",
+            colour = "black",
+            vjust = 1.5
+          )
+        )
     }
   }
+  
   xT<-seq(-1,1,0.05)
   dfT <- bipart_table(function(xT)
     sin(xT) + cos(xT ^ 2), -1, 1, 5, 1)
   abT <- bipart(function(xT)
     sin(xT) + cos(xT ^ 2), -1, 1, 5)
   
-  output$graficaTrig <-
-    renderPlot(plot(
-      xT,
-      sin(xT) + cos(xT ^ 2),
-      ylim = c(-5, 10),
-      xlim = c(-1, 1),
-      type = "l",
-      col = "#f2540c",
-      lwd = 3
-    ))
+ 
+  
+  xDTrig <- as.data.frame(xT)
+  gBipartTRIG <- ggplot(xDTrig, aes(x = xT, y =  sin(xT) + cos(xT ^ 2))) +
+    labs(x = "X", y = "F(X)") +
+    theme(axis.title.x = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    theme(axis.title.y = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    geom_line(data = xDTrig) +
+    geom_line(color = "blue", size = 1)
+  
+  output$graficaTrig <- renderPlot(gBipartTRIG)
   
   observeEvent(input$botontrig, bipartTrig(input$botontrig, 5, abT))
   
   #OPTIMIZACION
-  bipartOpt <- function(i, n, abO) {
+  
+  bipartOpt <- function(i, n,abO) {
     if (i <= n) {
       output$opt <- renderTable(dfO[1:i, ])
       output$graficaOpt <-
-        renderPlot(plot(
-          xO,
-          (3 * xO ^ 2 - 1),
-          ylim = c(-5, 10),
-          xlim = c(abO[i, 1], abO[i, 2]),
-          type = "l",
-          col = "#f2540c",
-          lwd = 3
-        ))
+        renderPlot(
+          gBipartOPT +  
+            geom_line(aes(x = abO[i, 1],colour = "a"),color="#f2540c", size = 1) +
+            geom_line(aes(x = abO[i, 2],colour = "b"),color="#f2540c", size = 1)
+          
+          +annotate(
+            "text",
+            x = abO[i, 1],
+            y = -1.25,
+            label = "a",
+            colour = "black",
+            vjust = 1.5
+          )
+          + annotate(
+            "text",
+            x =abO[i, 2],
+            y =  -1.25,
+            label = "b",
+            colour = "black",
+            vjust = 1.5
+          )
+        )
     }
   }
+
   xO<-seq(0,2,0.05)
   dfO <- bipart_table(function(xO)
     (3 * xO ^ 2 - 1), 0, 2, 6, 1)
   abO <- bipart(function(xO)
     (3 * xO ^ 2 - 1), 0, 2, 6)
   
-  output$graficaOpt <-
-    renderPlot(plot(
-      xO,
-      (3 * xO ^ 2 - 1),
-      ylim = c(-5, 10),
-      xlim = c(0, 2),
-      type = "l",
-      col = "#f2540c",
-      lwd = 3
-    ))
+  
+  
+  xDOpt <- as.data.frame(xO)
+  gBipartOPT <- ggplot(xDOpt, aes(x = xO, y =   (3 * xO ^ 2 - 1)))+ annotate(
+    "text",
+    x =2,
+    y =  4.5,
+    label = "f(x)",
+    colour = "black",
+    vjust = 1.5
+  ) +geom_line( aes(x = xO, y =   (xO ^ 3 -xO - 1)),color="black",size=1)+ annotate(
+    "text",
+    x =2,
+    y =  10,
+    label = "f(x)'",
+    colour = "black",
+    vjust = 1.5
+  ) +
+    labs(x = "X", y = "F(X)") +
+    theme(axis.title.x = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    theme(axis.title.y = element_text(
+      face = "bold",
+      vjust = -0.5,
+      colour = "#f2540c",
+      size = rel(1)
+    )) +
+    geom_line(data = xDOpt) +
+    geom_line(color = "blue", size = 1)
+  
+  output$graficaOpt <- renderPlot(gBipartOPT)
+  
   
   observeEvent(input$botonopt, bipartOpt(input$botonopt, 6, abO))
   
@@ -1380,3 +1458,4 @@ server <- function(input, output) {
 }
 
 shinyApp(ui = ui, server = server)
+
